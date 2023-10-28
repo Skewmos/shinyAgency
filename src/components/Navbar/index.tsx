@@ -27,7 +27,7 @@ const Navbar = () => {
             </NavLink>  
          
           <li className={styles.navItem}>
-            <NavLink to={"/survey"}>
+            <NavLink to={"/survey/1"}>
                 <button className={styles.button}>
                   Faire le test
                 </button>

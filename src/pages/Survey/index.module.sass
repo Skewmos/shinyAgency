@@ -1,0 +1,75 @@
+@import '../../utils/styles/color'
+
+.surveyContainer
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  text-align: center
+
+h3::after
+  content: ""
+  display: block
+  width: 8rem
+  height: 2px
+  background: #5843E4
+  margin: 0 auto 0
+
+h3
+  font-family: 'Trebuchet MS'
+  font-size: 1.56rem
+  font-style: normal
+  font-weight: 700
+  line-height: normal
+  text-align: center
+  position: relative
+  color: #2F2E41
+
+.surveyContent
+  width: 52rem
+  text-align: center
+  font-family: 'Trebuchet MS'
+  font-size: 1.25rem
+  margin-top: 3.5rem
+  font-weight: 400
+
+.answerContainer
+  margin-top: 3.94rem
+  margin-right: auto
+  margin-left: auto
+  width: 52rem
+  .answerButton
+    border-radius: 1.9375rem
+    border: 2px solid #5843E4
+    background: #F9F9FC
+    width: 18.1875rem
+    height: 6rem
+    flex-shrink: 0
+    color: #2F2E41
+    text-align: center
+    font-family: Trebuchet MS
+    font-size: 1.5625rem
+    font-style: normal
+    font-weight: 700
+    line-height: normal
+    margin-right: 2.62rem
+  
+.paginationWrapper
+  margin-top: 3.94rem
+  margin-right: auto
+  margin-left: auto
+  width: 52rem
+  .linkPagination
+    color: #2F2E41
+    text-align: right
+    font-family: Trebuchet MS
+    font-size: 1.125rem
+    font-style: normal
+    font-weight: 400
+    line-height: normal
+    text-decoration-line: underline
+    margin-right: 2.62rem
+
+.surveyLoader
+  position: absolute
+  left: 48%

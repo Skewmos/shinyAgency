@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Error from "../pages/Error";
-import Survey from "../pages/Survey";
+import Survey from "../pages/Survey/Survey";
 import Nav from "../components/Navbar";
 import Freelance from "../pages/Freelance/Freelance";
 
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       errorElement: <Error/>
     },
     {
-      path:"/survey",
+      path:"/survey/:questionNumber",
       element: <Survey/>,
       errorElement: <Error/>
     }

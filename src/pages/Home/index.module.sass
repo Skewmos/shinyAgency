@@ -1,8 +1,10 @@
+@import '../../utils/styles/color'
+
 .jumbotron
   display: flex
   width: 82.0625rem
   height: 51.5rem
-  background: #F9F9FC
+  background: $offWhite
 
   .text
     flex: 1
@@ -13,7 +15,7 @@
     margin-right: 2.81rem
 
     .subtitle
-      color: #2F2E41
+      color: $darkColor
       font-family: 'Trebuchet MS'
       font-size: 3.125rem
       font-style: normal
@@ -22,13 +24,13 @@
 
   .button
     border-radius: 1.8125rem
-    background: #5843E4
+    background: $firstColor
     width: 16.3125rem
     height: 2.5rem
     flex-shrink: 0
     color: white
     border: 0
-    color: #FFF
+    color: $white
     font-family: 'Trebuchet MS'
     font-size: 20px
     font-style: normal
@@ -42,3 +44,11 @@
     height: 30rem
     margin-top: 8rem
     margin-right: 4.81rem
+
+.jumbotronDark
+  background-color: $darkSecondary
+
+  .text
+
+    .subtitleLight
+      color: $white

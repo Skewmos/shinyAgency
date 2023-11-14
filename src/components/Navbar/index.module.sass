@@ -1,4 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/trebuchet-ms-2')
+@import '../../utils/styles/color'
 
 .navbar
   display: flex
@@ -13,7 +14,7 @@
     align-items: center
     list-style-type: none
     .navItem
-      color: #8186A0
+      color: $secondColor
       font-family: Trebuchet MS
       font-size: 1.25rem
       font-style: normal
@@ -22,9 +23,12 @@
       margin-left: 1rem 
       text-decoration: none
       margin-right: 35px
-
+    .navItemDark
+      color: $white
       &:link
         text-decoration: none !important
+.navbarDark
+    background-color: $darkColor
 .logo
   margin-right: 1rem
   width: 187.629px
@@ -33,13 +37,13 @@
 
 .button
   border-radius: 1.8125rem
-  background: #5843E4
+  background: $firstColor
   width: 10.875rem
   height: 2.5rem
   flex-shrink: 0
   color: white
   border: 0
-  color: #FFF
+  color: $white
   font-family: Trebuchet MS
   font-size: 20px
   font-style: normal

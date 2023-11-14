@@ -1,15 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { apiUrl } from "../../utils/utils";
+import {useFetch} from "../../utils/hooks/useFetch";
 import { Link, useParams } from "react-router-dom";
 import styles from './index.module.sass';
 import Loader from "../../components/Loader";
 
-type SurveyData = {
-  surveyData?: {
-    [key: string | number]: string;
-  };
-};
+interface ErrorProps {
+  error: string;
+}
 
 const Answers = () => {
   return (
@@ -19,58 +16,52 @@ const Answers = () => {
           <button className={styles.answerButton}> Non</button>
         </section>
     </>
-  )
-}
+  );
+};
+
+const Error: React.FC<ErrorProps> = ({ error }) => {
+  return (
+    <>
+      <span>
+        <p>{error}</p>
+      </span>
+    </>
+  );
+};
 
 const Survey = () => {
   const { questionNumber } = useParams();
   const questionNumberInt: number  = questionNumber ? parseInt(questionNumber) : 0;
   const prevQuestionNumber: number = questionNumberInt === 1 ? 1 : questionNumberInt - 1;
   const nextQuestionNumber: number = questionNumberInt + 1;
-  const [surveyData, setSurveyData] = useState<SurveyData>({});
-  const [isDataLoading, setDataLoading] = useState<Boolean>(false);
+  const url = apiUrl + '/survey';
+  const { data, isLoading, error } = useFetch({url: url});
+  const surveyData = data ? data.surveyData : null;
 
-  useEffect(() => {
-    setDataLoading(true);
-
-    axios.get(apiUrl+'/survey')
-    .then((response) => { 
-        const { surveyData } = response.data;
-        setSurveyData(surveyData);
-        setDataLoading(false);
-    })
-    .catch((error) => {
-      console.error('Erreur lors de la récupération des données :', error);
-      setDataLoading(false);
-    });
-  }, [])
-  
   return (
     <>
       <section className={styles.surveyContainer}>
-        <h3 className={styles.underline}>Question {questionNumber} </h3>
-        {isDataLoading ? (
+        {isLoading ? (
           <div className={styles.surveyLoader}>
             <Loader />
           </div>
         ) : (
           <>
+          <h3 className={styles.underline}>Question {questionNumber} </h3>
             <span className={styles.surveyContent}>
-              { questionNumber && surveyData[questionNumber]}
+              { surveyData && questionNumber && surveyData[questionNumber]}
             </span>
-            <Answers/>
+            { error ? (<Error error={error} />) : (<Answers/>)}
+            <div className={styles.paginationWrapper}>
+              <Link to={`/survey/${prevQuestionNumber}`} className={styles.linkPagination}>Précédent</Link>
+                { surveyData && surveyData[questionNumberInt + 1] ? (
+                  <Link to={`/survey/${nextQuestionNumber}`} className={styles.linkPagination}>Suivant</Link>
+                ) : (
+                  <Link to="/results" className={styles.linkPagination}>Résultats</Link>
+                )}
+           </div>
           </>
         )}
-
-       
-        <div className={styles.paginationWrapper}>
-        <Link to={`/survey/${prevQuestionNumber}`} className={styles.linkPagination}>Précédent</Link>
-          {surveyData[questionNumberInt + 1] ? (
-            <Link to={`/survey/${nextQuestionNumber}`} className={styles.linkPagination}>Suivant</Link>
-          ) : (
-            <Link to="/results" className={styles.linkPagination}>Résultats</Link>
-          )}
-        </div>
       </section>
     </>
   );
